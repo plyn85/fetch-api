@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>getting started with fetch api</h1>
+    <button id='fetch-user-data-btn'>fetch user data button</button>
+    <div id='response'></div> 
+    <script>
+let getUserDataBtn = document.getElementById('fetch-user-data-btn');
+getUserDataBtn.addEventListener('click',getUserData)
+userDiv = document.getElementById('response')
+function getUserData (){
+    //fetching json data with a request to server using a promise
+    fetch('https://jsonplaceholder.typicode.com/users')
+    // then runs when promise is resolved- respose is succesfully
+    // respose and json here are just agruments and could be called anything
+    .then(response => response.json())
+    .then(users => {
+    let output = `<h2>user list</h2>`;
+    //looping through obj and returning the name value
+    users.forEach(user =>{
+    output += `<p>${user.name}</p>`;
+
+    })
+    
+    userDiv.innerHTML = output;
+    })
+}
+    </script>
+</body>
+</html>
